@@ -75,6 +75,7 @@ fun Integer7() {
     var number_2 = number % 10
     println("Первая цифра: $number_1, вторая цифра: $number_2")
     println("Произведение: ${number_1 * number_2}, сумма: ${number_1 + number_2}")
+    print("Привет! Шо-как?")
 }
 
 fun If29_30() {
