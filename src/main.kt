@@ -1,7 +1,9 @@
 import java.lang.Math.*
+import java.lang.NumberFormatException
+import kotlin.math.roundToInt
 
 fun main() {
-    Integer7()
+    Undead_Console_Calculator_4_Operations()
 }
 
 fun Begin7() {
@@ -76,6 +78,28 @@ fun Integer7() {
     println("Первая цифра: $number_1, вторая цифра: $number_2")
     println("Произведение: ${number_1 * number_2}, сумма: ${number_1 + number_2}")
     print("Привет! Шо-как?")
+}
+
+fun If8() {
+    print("If8. Даны два числа. Вывести вначале большее, а затем меньшее из них.\n")
+    print("Введите первое число: ") //Сtrl + D
+    var num1 = readLine()!!.toDouble()
+    print("Введите второе число: ") //Сtrl + D
+    var num2 = readLine()!!.toDouble() //Сtrl+Shift+стрелки вниз\вверх
+
+    if (num1 == num2) {
+        println("Они равны!")
+        println(num1)
+        println(num2)
+    } else {
+        if (num1 > num2) {
+            println(num1)
+            println(num2)
+        } else {
+            println(num2)
+            println(num1)
+        }
+    }
 }
 
 fun If29_30() {
@@ -191,3 +215,84 @@ fun For3() {
 
 }
 
+fun Try_Catch_Test() {
+
+    try {
+        var num1 = readLine()!!.toDouble()
+        var num2 = readLine()!!.toDouble()
+        var num3 = 0.0
+        num3 = num1 / num2
+        println("Результат деления $num1 на $num2 = $num3")
+    } catch (e: NumberFormatException) {
+        print("Число вводи!")
+    } catch (e: Exception) {
+        print("Ошибка!")
+    }
+}
+
+
+fun Undead_Console_Calculator_4_Operations() {
+    /*Блок инициализации переменных*/
+    var number1: Double = 0.0
+    var number2: Double = 0.0
+    var operation: String = ""
+    var run = true
+    var operation_counter = 1
+    var buffer = 0
+
+    Calc_Info()
+
+    main_loop@ while (run){
+        try {
+            print("\n\nОперация №$operation_counter\n")
+            print("Введите первое число: ")
+            number1 = readLine()!!.toDouble()
+            print("Введите второе число: ")
+            number2 = readLine()!!.toDouble()
+
+            print("Выберите операцию: ")
+            operation = readLine().toString().toLowerCase()
+            when (operation) {
+                "+" -> println("Результат сложения: $number1+$number2 = ${number1 + number2}")
+                "-" -> println("Результат вычитания: $number1-$number2 = ${number1 - number2}")
+                "*" -> println("Результат умножения: $number1*$number2 = ${number1 * number2}")
+                "/" -> println("Результат деления: $number1/$number2 = ${number1 / number2}")
+                else -> println("Ошибка! Такая операция не предусмотрена!")
+            }
+
+
+            continue_loop@ while (run) {
+                print("Хотите ли вы продолжить?[y/n]: ")
+                operation = readLine().toString()
+                when (operation) {
+                    "y" -> continue@main_loop
+                    "n" -> {
+                        print("До свидания!")
+                        break@main_loop
+                    }
+                    else -> {
+                        continue
+                        print("Ошибка!")
+                    }
+                }
+            }
+        } catch (e: NumberFormatException) {
+            print("Нужно вводить только числа!")
+        } catch (e: Exception) {
+            print("Ошибка!")
+        }
+        operation_counter++ // инкремент +1
+        // operation_counter-- // декремент -1
+    }
+}
+fun Calc_Info() {
+    print("Вас приветствует консольный калькулятор.\n" +
+            "Я работаю по принципу последовательного ввода чисел и выбора операции с ними.\n" +
+            "Введите первое и второе число. Выберите операцию, для ввода - нажмите Enter.\n" +
+            "Предусмотренные операции вводятся с помощью кодовых слов или соответствующих символов\n" +
+            "+ - сложение\n" +
+            "- - вычитание\n" +
+            "* - умножение\n" +
+            "/ - деление\n" +
+            "Приятного использования!\n")
+}
